@@ -1,9 +1,14 @@
 package org.battleship.ship;
 
 public enum SquareStatus {
-    EMPTY, SHIP, HIT, MISSED;
+    EMPTY("O"), SHIP("!"), HIT("*"), MISSED("%");
 
+    private final String status;
+
+    SquareStatus(String status){
+        this.status = status;
+    }
     public String getCharacter(){
-        return "AA";
+        return status;
     }
 }
