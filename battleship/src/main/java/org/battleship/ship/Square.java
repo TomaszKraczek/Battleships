@@ -1,4 +1,4 @@
-package org.example.ship;
+package org.battleship.ship;
 
 public class Square {
     private int x;

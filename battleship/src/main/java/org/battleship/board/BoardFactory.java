@@ -1,4 +1,4 @@
-package org.example.board;
+package org.battleship.board;
 
 public class BoardFactory {
     public void randomPlacement(Board board) {

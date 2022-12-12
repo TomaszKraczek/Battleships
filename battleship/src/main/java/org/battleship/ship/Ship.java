@@ -1,4 +1,4 @@
-package org.example.ship;
+package org.battleship.ship;
 
 import java.util.ArrayList;
 import java.util.List;

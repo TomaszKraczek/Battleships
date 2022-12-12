@@ -1,6 +1,6 @@
-package org.example.user;
+package org.battleship.user;
 
-import org.example.ship.Ship;
+import org.battleship.ship.Ship;
 
 import java.util.ArrayList;
 import java.util.List;

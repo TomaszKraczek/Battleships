@@ -1,6 +1,6 @@
-package org.example.view;
+package org.battleship.view;
 
-import org.example.board.Board;
+import org.battleship.board.Board;
 
 public class Display {
 

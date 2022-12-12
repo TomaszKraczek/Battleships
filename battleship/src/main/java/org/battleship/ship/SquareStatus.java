@@ -1,4 +1,4 @@
-package org.example.ship;
+package org.battleship.ship;
 
 public enum SquareStatus {
     EMPTY, SHIP, HIT, MISSED;

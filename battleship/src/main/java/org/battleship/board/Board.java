@@ -1,6 +1,6 @@
-package org.example.board;
+package org.battleship.board;
 
-import org.example.ship.Square;
+import org.battleship.ship.Square;
 
 public class Board {
     private Square[][] ocean = new Square[10][10];

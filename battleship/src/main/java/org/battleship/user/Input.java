@@ -1,4 +1,4 @@
-package org.example.user;
+package org.battleship.user;
 
 public class Input {
     private String SelectedField;
