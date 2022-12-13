@@ -7,6 +7,7 @@ public enum SquareStatus {
 
     SquareStatus(String status)
     {
+
         this.status = status;
     }
     public String getFieldStatusSymbol()
