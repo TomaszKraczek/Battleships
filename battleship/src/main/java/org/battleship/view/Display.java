@@ -32,6 +32,10 @@ public class Display {
     public void displayMessage(String message){
         System.out.println(message);
     }
+    public void displayMessageForShipPlacement(Ship ship){
+        String s = String.format("Chose first coordinate for: %s", ship.getType());
+        System.out.println(s);
+    }
     public void displayMenu(){
 
     }

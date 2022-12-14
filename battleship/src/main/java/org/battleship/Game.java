@@ -26,28 +26,21 @@ public class Game {
         player1.generatePlayerShipList();
         player2.generatePlayerShipList();
 
-        monitor.displayMessage("Wybierz jakieś koordynaty");
-        int[] coords = reader.getConvertedCoordinates();
-        for (int i : coords) {
-            System.out.println(i);
+        monitor.displayBoard(board1);
+
+        for (Ship ship : player1.getPlayerShips()) {
+            monitor.displayMessageForShipPlacement(ship);
+            int[] shipCoord = reader.getConvertedCoordinates();
+            monitor.displayMessage("Chose direction for rest of the ship: ");
+            String direction = reader.getStringFromUser();
+
+            this.setShipOnBoard(board1, ship, shipCoord[0], shipCoord[1], direction);
+
+            monitor.displayBoard(board1);
         }
-
-//        for (Ship ship : player1.getPlayerShips()) {
-//            System.out.println("podaj pierwszą współrzędną");
-//            int first = scan.nextInt();
-//            System.out.println("Podaj drugą współrzędną");
-//            int second = scan.nextInt();
-//            System.out.println("podaj kierunek rozstawienia");
-//            String choice = scan.next();
-//
-//            setShipOnBoard(board1, ship, first, second, choice);
-//
-//        }
-//        monitor.displayBoard(board1);
-
     }
 
-    private static void setShipOnBoard(Board board1, Ship ship, int first, int second, String choice) {
+    private void setShipOnBoard(Board board1, Ship ship, int first, int second, String choice) {
         switch (choice) {
             case "left":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
