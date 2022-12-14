@@ -18,3 +18,5 @@
 /battleship/target/classes/org/battleship/ship/SquareStatus.class
 /.idea/uiDesigner.xml
 /.idea/vcs.xml
+
+.fake
