@@ -31,5 +31,7 @@ public class Square {
     public int getYPosition(){
         return y;
     }
+
+
 }
 
