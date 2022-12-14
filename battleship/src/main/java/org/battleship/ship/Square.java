@@ -3,7 +3,7 @@ package org.battleship.ship;
 public class Square {
     private int x;
     private int y;
-    private String squareStatus = SquareStatus.EMPTY.getFieldStatusSymbol();
+    private String squareStatus;
 
     public Square(int x, int y, SquareStatus status) {
         this.x = x;

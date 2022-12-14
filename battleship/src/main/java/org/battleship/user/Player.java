@@ -3,7 +3,8 @@ package org.battleship.user;
 import org.battleship.board.Board;
 import org.battleship.ship.Ship;
 import org.battleship.ship.ShipType;
-
+import org.battleship.ship.Square;
+import org.battleship.ship.SquareStatus;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,15 +32,24 @@ public class Player {
     public void deleteFromPlayerShipList(Ship ship){
         playerShips.remove(ship);
     }
-
-    public void setUpShips(Board board) {
-        for (Ship ship : playerShips) {
-//            ship.setOnBoard(Board board);
-        }
+    public void addToPlayerShipList(Ship ship){
+        playerShips.add(ship);
     }
     public void showShipList(){
         for (Ship playerShip : playerShips) {
             System.out.println(playerShip.getType());
         }
+    }
+    public boolean isAnyShipLeft(){
+        boolean isAlive = false;
+        for (Ship ship : playerShips) {
+            List<Square> cords = ship.getCoordsOfShip();
+            for (Square field : cords) {
+                if(field.getSquareStatus() == SquareStatus.SHIP.getFieldStatusSymbol()){
+                    isAlive = true;
+                }
+            }
+        }
+        return isAlive;
     }
 }

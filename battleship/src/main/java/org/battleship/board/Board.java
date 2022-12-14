@@ -35,26 +35,64 @@ public class Board {
         }
     }
 
-
     public boolean areFieldsAroundEmpty(Square coordinates) {
         int x = coordinates.getXPosition();
         int y = coordinates.getYPosition();
-        if (
-            ocean[x + 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
-            ocean[x - 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
-            ocean[x][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
-            ocean[x][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
-            ocean[x + 1][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
-            ocean[x + 1][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
-            ocean[x - 1][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
-            ocean[x - 1][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()))
-        {
+            if    (x == 0 && y == 0){
+                if (ocean[x + 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol())){
+                    return true;
+                }
+
+        } else if (x == 9 && y == 0){
+            if (ocean[x - 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                    ocean[x][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol())){
+                return true;
+            }
+        } else if (x == 0 && y == 9){
+                if (ocean[x + 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                        ocean[x][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol())){
+                    return true;
+                }
+        } else if (x == 9 && y == 9 ){
+                if (ocean[x - 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                        ocean[x][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol())){
+                    return true;
+                }
+
+        } else if (x == 0 || x == 9) {
+            if (ocean[x][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol())) {
+                return true;
+                }
+        } else if (y == 0 || y == 9) {
+            if (ocean[y][x + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[y][x - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol())){
+                return true;
+                }
+
+        } else if (
+                ocean[x + 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x - 1][y].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x + 1][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x + 1][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x - 1][y - 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol()) &&
+                ocean[x - 1][y + 1].getSquareStatus().equals(SquareStatus.EMPTY.getFieldStatusSymbol())) {
             return true;
-        }else {
+        } else {
             return false;
         }
-
+        return false;
     }
 
+    public String getFieldInfo(int x, int y){
+            String status = ocean[x][y].getSquareStatus();
+        return status;
+    }
+    public void changeFieldStatus(int x, int y, String status){
+        ocean[x][y].setSquareStatus(status);
+    }
 
 }
