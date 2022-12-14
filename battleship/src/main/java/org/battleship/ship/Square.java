@@ -25,6 +25,10 @@ public class Square {
     public void setY(int y) {
         this.y = y;
     }
+
+    public void setStatus(SquareStatus status){
+        squareStatus = status.getFieldStatusSymbol();
+    }
     public int getXPosition(){
         return x;
     }

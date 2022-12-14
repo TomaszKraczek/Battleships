@@ -5,18 +5,18 @@ import java.util.List;
 
 public class Ship {
     private int size;
-    private String type;
+    private ShipType type;
 
     private int fieldsSunked;
 
     private List<Square> coordsOfShip = new ArrayList<>();
 
     public Ship(ShipType type){
-        this.type = type.name();
+        this.type = type;
         this.size = type.getShipSize();
     }
 
-    public String getType (){
+    public ShipType getType (){
         return type;
     }
 
@@ -28,9 +28,14 @@ public class Ship {
     }
 
     public void setCoordsOfShip(List<Square> coordsOfShip) {
+
         this.coordsOfShip = coordsOfShip;
     }
     public List<Square> getCoordsOfShip(){
         return coordsOfShip;
+    }
+
+    public void addPartOfShip(Square coords){
+        coordsOfShip.add(coords);
     }
 }
