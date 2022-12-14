@@ -27,6 +27,7 @@ public class Ship {
         else return false;
     }
 
+
     public void setCoordsOfShip(List<Square> coordsOfShip) {
 
         this.coordsOfShip = coordsOfShip;
