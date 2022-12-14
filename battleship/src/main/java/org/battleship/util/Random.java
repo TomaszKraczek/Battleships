@@ -7,12 +7,12 @@ public class Random {
     public List<Integer> generateRandomXandY(){
         Random rand = new Random();
         List<Integer> XandY = new ArrayList<>();
-        XandY.add(nextInt(10));
-        XandY.add(nextInt(10));
+        XandY.add(nextInt(11));
+        XandY.add(nextInt(11));
         return XandY;
     }
 
-    private int nextInt(int i) {
+    public int nextInt(int i) {
         return rand.nextInt(i);
     }
 }
