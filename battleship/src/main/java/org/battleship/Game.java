@@ -26,24 +26,35 @@ public class Game {
         player1.generatePlayerShipList();
         player2.generatePlayerShipList();
 
-        monitor.displayMessage("Wybierz jakieś koordynaty");
-        int[] coords = reader.getConvertedCoordinates();
-        for (int i : coords) {
-            System.out.println(i);
-        }
 
-//        for (Ship ship : player1.getPlayerShips()) {
-//            System.out.println("podaj pierwszą współrzędną");
-//            int first = scan.nextInt();
-//            System.out.println("Podaj drugą współrzędną");
-//            int second = scan.nextInt();
-//            System.out.println("podaj kierunek rozstawienia");
-//            String choice = scan.next();
-//
-//            setShipOnBoard(board1, ship, first, second, choice);
-//
-//        }
-//        monitor.displayBoard(board1);
+        System.out.println("Welcome in BattleShip Game!!!");
+        System.out.println("You have \n" +
+                " 1 * Carrier - 5 fields\n" +
+                " 1 * battleship - 4 fields\n" +
+                " 2 * cruiser - 3 fields\n" +
+                " 3 * submarine - 3 fields\n" +
+                " 3 * destroyer - 2 fields\n" +
+                "Set them up on the map by choosing coordinates!:");
+
+
+
+        for (Ship ship : player1.getPlayerShips()) {
+            monitor.displayBoard(board1);
+            System.out.println("You are placing " + ship.getType().name());
+            System.out.println("It has " + ship.getType().getShipSize() +" fields");
+            System.out.println(" ");
+            monitor.displayMessage("Pick Coordinates(a-j)(1-10): ");
+            int[] coords = reader.getConvertedCoordinates();
+            System.out.println("podaj kierunek rozstawienia");
+            String choice = reader.getStringFromUser();
+
+            setShipOnBoard(board1, ship, coords[0], coords[1], choice);
+
+            for (int b=0; b <42; b++){
+                System.out.println(" ");
+            }
+        }
+        monitor.displayBoard(board1);
 
     }
 
