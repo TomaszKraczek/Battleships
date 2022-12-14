@@ -11,7 +11,8 @@ public class Player {
     private List<Ship> playerShips = new ArrayList<>();
     private int playerId;
 
-    public Player(int playerId) {
+    public Player(int playerId)
+    {
         this.playerId = playerId;
     }
 
@@ -22,6 +23,9 @@ public class Player {
                 playerShips.add(new Ship(shipType));
             }
         }
+    }
+    public List<Ship> getPlayerShips(){
+        return playerShips;
     }
 
     public void deleteFromPlayerShipList(Ship ship){

@@ -1,6 +1,7 @@
 package org.battleship.view;
 
 import org.battleship.board.Board;
+import org.battleship.ship.Ship;
 import org.battleship.ship.Square;
 
 public class Display {
@@ -27,6 +28,9 @@ public class Display {
             }
             System.out.println();
         }
+    }
+    public void displayMessage(String message){
+        System.out.println(message);
     }
     public void displayMenu(){
 
