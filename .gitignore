@@ -1,5 +1,9 @@
 /battleship/target/classes/org/battleship/Battleship.class
 /battleship/battleship.iml
+/battleship/target/classes/org/battleship/ship/Square.class
+/.idea/.gitignore
+/battleship/target/classes/org/battleship/Battleship.class
+/.idea/battleship-oop-java-jkuca.iml
 /battleship/target/classes/org/battleship/board/Board.class
 /battleship/target/classes/org/battleship/board/BoardFactory.class
 /.idea/compiler.xml
@@ -14,9 +18,7 @@
 /.idea/shelf/Uncommitted_changes_before_Merge_at_14_12_2022_10_36_[Changes]/shelved.patch
 /battleship/target/classes/org/battleship/ship/Ship.class
 /battleship/target/classes/org/battleship/ship/ShipType.class
-/battleship/target/classes/org/battleship/ship/Square.class
 /battleship/target/classes/org/battleship/ship/SquareStatus.class
 /.idea/uiDesigner.xml
-/.idea/shelf/Uncommitted_changes_before_Merge_at_14_12_2022_10_36__Changes_.xml
 /.idea/vcs.xml
 /.idea/workspace.xml

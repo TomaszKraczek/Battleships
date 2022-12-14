@@ -5,8 +5,11 @@ import org.battleship.ship.Ship;
 import org.battleship.ship.Square;
 import org.battleship.ship.SquareStatus;
 import org.battleship.user.Player;
+import org.battleship.util.Random;
 import org.battleship.view.Display;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
