@@ -20,10 +20,14 @@ public class Input {
     }
 
     public int[] getConvertedCoordinates(){
-        String userPosition = scan.next().toUpperCase();
+        int firstCoordinate,secondCoordinate;
+        String userPosition;
+        do{
+            userPosition = scan.next().toUpperCase();
+        }while(!userPosition.matches("^[a-jA-J]([1-9]{1}|10)$"));
         String[] coordinates = userPosition.split("",2);
-        int firstCoordinate = userPosition.charAt(0) - 65;
-        int secondCoordinate = Integer.parseInt(coordinates[1]) - 1;
+        firstCoordinate = userPosition.charAt(0) - 65;
+        secondCoordinate = Integer.parseInt(coordinates[1]) - 1;
         return new int[]{firstCoordinate, secondCoordinate};
     }
 }
