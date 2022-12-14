@@ -16,4 +16,11 @@ public class Input {
         userChoice = scan.nextInt();
         return userChoice;
     }
+
+    public int[] getConvertedCoordinates(String position){
+        String[] coordinates = position.split("",2);
+        int firstCoordinate = position.charAt(0) - 65;
+        int secondCoordinate = Integer.parseInt(coordinates[1]) - 1;
+        return new int[]{firstCoordinate, secondCoordinate};
+    }
 }
