@@ -1,0 +1,11 @@
+Index: battleship/src/main/java/org/battleship/util/Random.java
+===================================================================
+diff --git a/battleship/src/main/java/org/battleship/util/Random.java b/battleship/src/main/java/org/battleship/util/Random.java
+deleted file mode 100644
+--- a/battleship/src/main/java/org/battleship/util/Random.java	(revision 13d70794bc6c070e94c7e46d9c2a64a84edb8a1d)
++++ /dev/null	(revision 13d70794bc6c070e94c7e46d9c2a64a84edb8a1d)
+@@ -1,4 +0,0 @@
+-package org.battleship.util;
+-
+-public class Random {
+-}

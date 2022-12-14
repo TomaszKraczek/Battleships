@@ -1,0 +1,157 @@
+Index: battleship/src/main/java/org/battleship/util/Random.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.battleship.util;\r\n\r\npublic class Random {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/battleship/src/main/java/org/battleship/util/Random.java b/battleship/src/main/java/org/battleship/util/Random.java
+--- a/battleship/src/main/java/org/battleship/util/Random.java	(revision 13d70794bc6c070e94c7e46d9c2a64a84edb8a1d)
++++ b/battleship/src/main/java/org/battleship/util/Random.java	(date 1671006701566)
+@@ -1,4 +1,18 @@
+ package org.battleship.util;
++import java.util.*;
+ 
+ public class Random {
++    Random rand = new Random();
++
++    public List<Integer> generateRandomXandY(){
++        Random rand = new Random();
++        List<Integer> XandY = new ArrayList<>();
++        XandY.add(nextInt(10));
++        XandY.add(nextInt(10));
++        return XandY;
++    }
++
++    private int nextInt(int i) {
++       return rand.nextInt(i);
++    }
+ }
+Index: battleship/src/main/java/org/battleship/user/Input.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.battleship.user;\r\n\r\nimport java.util.Scanner;\r\npublic class Input {\r\n\r\n    private String SelectedField;\r\n    private int userChoice;\r\n\r\n\r\n    private boolean validate(){\r\n        return true;\r\n    }\r\n\r\n    public int getIntegerFromUser(){\r\n        Scanner scan = new Scanner(System.in);\r\n        userChoice = scan.nextInt();\r\n        return userChoice;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/battleship/src/main/java/org/battleship/user/Input.java b/battleship/src/main/java/org/battleship/user/Input.java
+--- a/battleship/src/main/java/org/battleship/user/Input.java	(revision 13d70794bc6c070e94c7e46d9c2a64a84edb8a1d)
++++ b/battleship/src/main/java/org/battleship/user/Input.java	(date 1671010201718)
+@@ -1,12 +1,16 @@
+ package org.battleship.user;
+ 
+ import java.util.Scanner;
++import org.battleship.board.Board;
++import org.battleship.ship.Square;
++
+ public class Input {
+ 
+     private String SelectedField;
+     private int userChoice;
++    Board board = new Board();
+ 
+-
++    Square[][] ocean = board.getBoard();
+     private boolean validate(){
+         return true;
+     }
+@@ -16,4 +20,12 @@
+         userChoice = scan.nextInt();
+         return userChoice;
+     }
++
++    public boolean checkIfFieldIsEmpty(int x, int y)
++    {
++        if (ocean[x][y].getSquareStatus() == "🟦"){
++            return true;
++        }
++        return false;
++    }
+ }
+Index: battleship/src/main/java/org/battleship/board/BoardFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.battleship.board;\r\n\r\npublic class BoardFactory {\r\n    public void randomPlacement(Board board) {\r\n    }\r\n    public void manualPlacement(Board board) {\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/battleship/src/main/java/org/battleship/board/BoardFactory.java b/battleship/src/main/java/org/battleship/board/BoardFactory.java
+--- a/battleship/src/main/java/org/battleship/board/BoardFactory.java	(revision 13d70794bc6c070e94c7e46d9c2a64a84edb8a1d)
++++ b/battleship/src/main/java/org/battleship/board/BoardFactory.java	(date 1671009403854)
+@@ -1,7 +1,28 @@
+ package org.battleship.board;
+ 
++
++import org.battleship.util.Random;
++import java.util.ArrayList;
++import java.util.List;
++
++
+ public class BoardFactory {
++    Random random = new Random();
++
++    private int X;
++    private int y;
++    public enum Direction{
++        LEFT,
++        UP,
++        RIGHT,
++        DOWN;
++    }
++
+     public void randomPlacement(Board board) {
++
++        List<Integer> XandY = new ArrayList<>();
++        XandY = random.generateRandomXandY();
++
+     }
+     public void manualPlacement(Board board) {
+     }
+Index: battleship/src/main/java/org/battleship/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.battleship;\r\n\r\nimport org.battleship.board.Board;\r\nimport org.battleship.ship.Ship;\r\nimport org.battleship.ship.ShipType;\r\nimport org.battleship.ship.Square;\r\nimport org.battleship.ship.SquareStatus;\r\nimport org.battleship.user.Player;\r\nimport org.battleship.view.Display;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class Game {\r\n\r\n    public void playGame() {\r\n        Display monitor = new Display();\r\n        Player player1 = new Player(1);\r\n        Player player2 = new Player(2);\r\n        Board board1 = new Board();\r\n\r\n        player1.generatePlayerShipList();\r\n        player2.generatePlayerShipList();\r\n\r\n        player1.showShipList();\r\n        System.out.println(\"drugi player \\n\");\r\n        player2.showShipList();\r\n\r\n        monitor.displayBoard(board1);\r\n\r\n\r\n\r\n\r\n\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/battleship/src/main/java/org/battleship/Game.java b/battleship/src/main/java/org/battleship/Game.java
+--- a/battleship/src/main/java/org/battleship/Game.java	(revision 13d70794bc6c070e94c7e46d9c2a64a84edb8a1d)
++++ b/battleship/src/main/java/org/battleship/Game.java	(date 1671005959835)
+@@ -22,9 +22,9 @@
+         player1.generatePlayerShipList();
+         player2.generatePlayerShipList();
+ 
+-        player1.showShipList();
+-        System.out.println("drugi player \n");
+-        player2.showShipList();
++//        player1.showShipList();
++//        System.out.println("drugi player \n");
++//        player2.showShipList();
+ 
+         monitor.displayBoard(board1);
+ 
+Index: battleship/src/main/java/org/battleship/board/Board.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.battleship.board;\r\n\r\nimport org.battleship.ship.Ship;\r\nimport org.battleship.ship.Square;\r\nimport org.battleship.ship.SquareStatus;\r\n\r\nimport java.util.List;\r\n\r\npublic class Board {\r\n    private Square[][] ocean = new Square[10][10];\r\n\r\n    public Board() {\r\n        for (int y=0; y<ocean.length; y++) {\r\n            for (int x = 0; x < ocean[y].length; x++) {\r\n                 ocean[x][y] = new Square(y, x, SquareStatus.EMPTY);\r\n            }\r\n        }\r\n    }\r\n\r\n    public Square[][] getBoard() {\r\n        return ocean;\r\n    }\r\n    private void setBoardField(int x, int y, String toChange){\r\n        this.ocean[x][y].setSquareStatus(toChange);\r\n    }\r\n    public void addShipToBoard(Ship ship){\r\n        List<Square> shipCordinates = ship.getCoordsOfShip();\r\n        for (Square shipCordinate : shipCordinates) {\r\n            setBoardField(shipCordinate.getXPosition(), shipCordinate.getYPosition(), shipCordinate.getSquareStatus());\r\n            }\r\n        }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/battleship/src/main/java/org/battleship/board/Board.java b/battleship/src/main/java/org/battleship/board/Board.java
+--- a/battleship/src/main/java/org/battleship/board/Board.java	(revision 13d70794bc6c070e94c7e46d9c2a64a84edb8a1d)
++++ b/battleship/src/main/java/org/battleship/board/Board.java	(date 1671010201708)
+@@ -17,7 +17,7 @@
+         }
+     }
+ 
+-    public Square[][] getBoard() {
++    public  Square[][] getBoard() {
+         return ocean;
+     }
+     private void setBoardField(int x, int y, String toChange){
+@@ -29,5 +29,4 @@
+             setBoardField(shipCordinate.getXPosition(), shipCordinate.getYPosition(), shipCordinate.getSquareStatus());
+             }
+         }
+-
+ }
