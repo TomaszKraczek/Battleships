@@ -10,10 +10,10 @@ import org.battleship.view.Display;
 
 
 public class Game {
+    private final static Display monitor = new Display();
+    private final static Input reader = new Input();
 
     public void playGame() {
-        Display monitor = new Display();
-        Input reader = new Input();
 
         Player player1 = new Player(1);
         Player player2 = new Player(2);
@@ -34,35 +34,42 @@ public class Game {
 
 
         for (Ship ship : player1.getPlayerShips()) {
-            monitor.displayBoard(board1);
-            boolean isPossible = false;
-            int[] coords;
-            String choice;
-            do
-            {
-                System.out.println("You are placing " + ship.getType().name());
-                System.out.println("It has " + ship.getType().getShipSize() + " fields");
-                monitor.displayMessage("Pick Coordinates(a-j)(1-10): ");
-                System.out.println(" ");
-                coords = reader.getConvertedCoordinates();
-                System.out.println("Write direction to set ship: ");
-                choice = reader.getStringFromUser();
-                try{
-                isPossible = checkIfAllFieldAreFree(board1, ship, coords[0], coords[1], choice);
-                } catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Nie można tak, wyjechałeś za linię");
-                }
-            } while (!isPossible);
-
-            setShipOnBoard(board1, ship, coords[0], coords[1], choice);
-
-
-            for (int b = 0; b < 42; b++) {
-                System.out.println(" ");
-            }
+            placeShipOnBoard(board1, ship);
         }
         monitor.displayBoard(board1);
 
+    }
+
+    private void placeShipOnBoard(Board board1, Ship ship) {
+        monitor.displayBoard(board1);
+        boolean isPossible = false;
+        int[] coords;
+        String choice;
+        do
+        {
+            System.out.println("You are placing " + ship.getType().name());
+            System.out.println("It has " + ship.getType().getShipSize() + " fields");
+            monitor.displayMessage("Pick Coordinates(a-j)(1-10): ");
+            monitor.displayMessage(" ");
+            coords = reader.getConvertedCoordinates();
+            System.out.println("Write direction to set ship: ");
+            choice = reader.getStringFromUser();
+            try{
+            isPossible = checkIfAllFieldAreFree(board1, ship, coords[0], coords[1], choice);
+            if (!isPossible){
+                System.out.println("Źle ustawiłeś statek");
+            }
+            } catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("Nie można tak, wyjechałeś za linię");
+            }
+        } while (!isPossible);
+
+        setShipOnBoard(board1, ship, coords[0], coords[1], choice);
+
+
+        for (int b = 0; b < 42; b++) {
+            System.out.println(" ");
+        }
     }
 
 
