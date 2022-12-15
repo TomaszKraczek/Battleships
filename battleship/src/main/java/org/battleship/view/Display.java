@@ -37,7 +37,10 @@ public class Display {
         System.out.println(s);
     }
     public void displayMenu(){
-
+        System.out.println("\n**STATKI**\nMENU:\n1. NOWA GRA\n2. NAJLEPSZE WYNIKI\n3. WYJŚCIE");
+    }
+    public void displayGameOptions(){
+        System.out.println("\n1. GRACZ VS GRACZ\n2. GRACZ VS KOMPUTER");
     }
     public void displayGameResult(){
 

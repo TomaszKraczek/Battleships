@@ -23,7 +23,6 @@ public class Game {
         player2.generatePlayerShipList();
 
 
-        System.out.println("\nWelcome in BattleShip Game!!!\n");
         System.out.println("     You have: \n" +
                 " 1 * Carrier - 5 fields\n" +
                 " 1 * battleship - 4 fields\n" +

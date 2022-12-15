@@ -8,15 +8,21 @@ import org.battleship.ship.SquareStatus;
 import org.battleship.user.Input;
 import org.battleship.user.Player;
 import org.battleship.view.Display;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Battleship {
+    private final static Display monitor = new Display();
+    private final static Input reader = new Input();
     public static void main(String[] args) {
+//        BattleshipController controller = new BattleshipController();
+//        controller.selectMenuOption();
+            Game game = new Game();
+            game.playGame();
 
-        Game game = new Game();
-        game.playGame();
+
 //        Display monitor = new Display();
 //        Input reader = new Input();
 //        Board board1 = new Board();
@@ -43,5 +49,10 @@ public class Battleship {
 //
 //        monitor.displayBoard(board1);
 
+
+
     }
+
+
+
 }
