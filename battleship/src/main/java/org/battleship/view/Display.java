@@ -50,11 +50,11 @@ public class Display {
     }
 
     public void messageToSetShips(Player player){
-        String s = String.format("\nWitaj %s! Możesz rozmieściść swoje statki! ", player.getPlayerName());
+        String s = String.format("\nWitaj %s! Możesz rozmieściść swoje statki! \n", player.getPlayerName());
         System.out.println(s);
     }
     public void messageToGetShootCoords(Player player){
-        System.out.println(String.format("%s Wybierz koordynaty do strzału: ", player.getPlayerName()));
+        System.out.println(String.format("\n%s Wybierz koordynaty do strzału: ", player.getPlayerName()));
     }
 
     public void rollUpTerminal(){
