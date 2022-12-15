@@ -51,7 +51,6 @@ public class Game {
                 }
             }while(!setShipOnBoard(board1, ship, coords[0], coords[1], choice));
 
-
             for (int b = 0; b < 42; b++) {
                 System.out.println(" ");
             }
