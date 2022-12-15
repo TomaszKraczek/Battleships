@@ -27,39 +27,29 @@ public class Game {
         System.out.println("     You have: \n" +
                 " 1 * Carrier - 5 fields\n" +
                 " 1 * battleship - 4 fields\n" +
-                " 2 * cruiser - 3 fields\n" +
-                " 3 * submarine - 3 fields\n" +
-                " 3 * destroyer - 2 fields\n" +
+                " 2 * destroyer - 3 fields\n" +
+                " 3 * cruiser - 2 fields\n" +
+                " 4 * submarine - 1 fields\n" +
                 "Set them up on the map by choosing coordinates!:");
 
 
         for (Ship ship : player1.getPlayerShips()) {
-            monitor.displayBoard(board1);
-            boolean isPossible = false;
             int[] coords;
             String choice;
-            int counterOfAttempts = 0;
-            do
-            {
-                if (counterOfAttempts > 0){
-                    System.out.println("Nie możesz tak rozstawić statku!");
-                }
+            do {
+                monitor.displayBoard(board1);
                 System.out.println("You are placing " + ship.getType().name());
                 System.out.println("It has " + ship.getType().getShipSize() + " fields");
-                monitor.displayMessage("Pick Coordinates(a-j)(1-10): ");
                 System.out.println(" ");
+                monitor.displayMessage("Pick Coordinates(a-j)(1-10): ");
                 coords = reader.getConvertedCoordinates();
-                System.out.println("Write direction to set ship: ");
-                choice = reader.getStringFromUser();
-                try{
-                isPossible = checkIfAllFieldAreFree(board1, ship, coords[0], coords[1], choice);
-                } catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Nie można tak, wyjechałeś za linię");
+                if (ship.getType().getShipSize() != 1) {
+                    System.out.println("podaj kierunek rozstawienia");
+                    choice = reader.getStringFromUser();
+                } else {
+                    choice = "right";
                 }
-                counterOfAttempts++;
-            } while (!isPossible);
-
-            setShipOnBoard(board1, ship, coords[0], coords[1], choice);
+            }while(!setShipOnBoard(board1, ship, coords[0], coords[1], choice));
 
 
             for (int b = 0; b < 42; b++) {
@@ -67,6 +57,15 @@ public class Game {
             }
         }
         monitor.displayBoard(board1);
+        for (int b=0; b < 5; b++){
+            System.out.println(" ");
+        }
+        System.out.println("        IT IS TIME TO HAVE FUN NOW !");
+        System.out.println("             SHOT YOUR ENEMY");
+
+
+
+
 
     }
 
@@ -74,6 +73,10 @@ public class Game {
     private void setShipOnBoard(Board board, Ship ship, int first, int second, String choice) {
         switch (choice) {
             case "left":
+                if(second - ship.getType().getShipSize() < 0){
+                    System.out.println(" WYKRACZA POZA LEWĄ STRONE !");
+                    return false;
+                }
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second - i, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
@@ -81,6 +84,10 @@ public class Game {
                 board.addShipToBoard(ship);
                 break;
             case "right":
+                if(second + ship.getType().getShipSize() > 9){
+                    System.out.println(" WYKRACZA POZA PRAWĄ STRONE !");
+                    return false;
+                }
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second + i, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
@@ -88,6 +95,10 @@ public class Game {
                 board.addShipToBoard(ship);
                 break;
             case "up":
+                if(first - ship.getType().getShipSize() < 0){
+                    System.out.println(" WYKRACZA Z GÓRNEJ CZĘŚCI TABELI! ");
+                    return false;
+                }
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first - i, second, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
@@ -95,6 +106,10 @@ public class Game {
                 board.addShipToBoard(ship);
                 break;
             case "down":
+                if(first + ship.getType().getShipSize() > 9){
+                    System.out.println(" WYKRACZA Z DOLNEJ CZĘŚCI TABELI! ");
+                    return false;
+                }
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first + i, second, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
@@ -137,7 +152,7 @@ public class Game {
                         }
                 break;
         }
-       return true;
+        return true;
     }
 
 }

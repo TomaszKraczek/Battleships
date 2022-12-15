@@ -20,6 +20,12 @@ public class Board {
         }
     }
 
+
+
+
+
+
+
     public Square[][] getBoard() {
         return ocean;
     }

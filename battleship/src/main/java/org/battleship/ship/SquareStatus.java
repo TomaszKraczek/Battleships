@@ -1,7 +1,7 @@
 package org.battleship.ship;
 
 public enum SquareStatus {
-    EMPTY("🟦"), SHIP("🟩"), HIT("🟥"), MISSED("🟫"), SUNK("🟪");
+    EMPTY("🟦"), SHIP("🟩"), HIT("🟥"), MISSED("🟫"), SUNK("🟪"), DISABLED("🟨");
 
     private final String status;
 
