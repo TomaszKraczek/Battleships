@@ -55,8 +55,10 @@ public class Game {
         while (player1.isAnyShipLeft() && player2.isAnyShipLeft()){
             playerTurn(player1, player2, player1Ships, player2Ships, player1Shots);
             if (!player2.isAnyShipLeft()){break;}
+            monitor.rollUpTerminal();
             playerTurn(player2, player1, player2Ships, player1Ships, player2Shots);
             if (!player1.isAnyShipLeft()){break;}
+            monitor.rollUpTerminal();
         }
 
         if(player1.isAnyShipLeft()){
@@ -109,7 +111,7 @@ public class Game {
             monitor.displayMessage("Wybierz współrzędne (A-J)(1-10): ");
             monitor.displayMessage(" ");
             coords = reader.getConvertedCoordinates();
-            System.out.println("Write direction to set ship: ");
+            monitor.displayMessage("Podaj kierunek ustawienia statku: ");
             choice = reader.getStringFromUser();
             try{
             isPossible = checkIfAllFieldAreFree(board, ship, coords[0], coords[1], choice);
@@ -132,28 +134,28 @@ public class Game {
 
     private void setOneShipOnBoard(Board board, Ship ship, int first, int second, String choice) {
         switch (choice) {
-            case "left", "lewo":
+            case "lewo":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second - i, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
                 }
                 board.addShipToBoard(ship);
                 break;
-            case "right":
+            case "prawo":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second + i, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
                 }
                 board.addShipToBoard(ship);
                 break;
-            case "up":
+            case "góra", "gora":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first - i, second, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
                 }
                 board.addShipToBoard(ship);
                 break;
-            case "down":
+            case "dół", "doł", "dol":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first + i, second, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
@@ -165,14 +167,14 @@ public class Game {
     private boolean checkIfAllFieldAreFree(Board board, Ship ship, int first, int second, String choice){
 
         switch (choice) {
-            case "left", "lewo":
+            case "lewo":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second - i, SquareStatus.SHIP);
                     if (!board.areFieldsAroundEmpty(partCoord)){
                         return false;}
                         }
                 break;
-            case "right":
+            case "prawo":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second + i, SquareStatus.SHIP);
                     if (!board.areFieldsAroundEmpty(partCoord)) {
@@ -180,14 +182,14 @@ public class Game {
                     }
                         }
                 break;
-            case "up":
+            case "góra", "gora":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first - i, second, SquareStatus.SHIP);
                     if (!board.areFieldsAroundEmpty(partCoord)) {
                         return false;}
                         }
                 break;
-            case "down":
+            case "dół", "doł", "dol":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first + i, second, SquareStatus.SHIP);
                     if (!board.areFieldsAroundEmpty(partCoord)) {

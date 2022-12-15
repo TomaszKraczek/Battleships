@@ -57,4 +57,10 @@ public class Display {
         System.out.println(String.format("%s Wybierz koordynaty do strzału: ", player.getPlayerName()));
     }
 
+    public void rollUpTerminal(){
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+    }
+
 }
