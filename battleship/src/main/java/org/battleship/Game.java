@@ -38,8 +38,12 @@ public class Game {
             boolean isPossible = false;
             int[] coords;
             String choice;
+            int counterOfAttempts = 0;
             do
             {
+                if (counterOfAttempts > 0){
+                    System.out.println("Nie możesz tak rozstawić statku!");
+                }
                 System.out.println("You are placing " + ship.getType().name());
                 System.out.println("It has " + ship.getType().getShipSize() + " fields");
                 monitor.displayMessage("Pick Coordinates(a-j)(1-10): ");
@@ -52,6 +56,7 @@ public class Game {
                 } catch (ArrayIndexOutOfBoundsException e){
                     System.out.println("Nie można tak, wyjechałeś za linię");
                 }
+                counterOfAttempts++;
             } while (!isPossible);
 
             setShipOnBoard(board1, ship, coords[0], coords[1], choice);

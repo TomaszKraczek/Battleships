@@ -30,12 +30,13 @@ public class Battleship {
         coords.add(new Square(1, 1, SquareStatus.SHIP));
         coords.add(new Square(1, 2, SquareStatus.SHIP));
         podwodna.setCoordsOfShip(coords);
-        podwodna.getCoordsOfShip().get(0).setSquareStatus(SquareStatus.SHIP.getFieldStatusSymbol());
-        podwodna.getCoordsOfShip().get(1).setSquareStatus(SquareStatus.SHIP.getFieldStatusSymbol());
+        podwodna.getCoordsOfShip().get(0).setSquareStatus(SquareStatus.HIT.getFieldStatusSymbol());
+        podwodna.getCoordsOfShip().get(1).setSquareStatus(SquareStatus.HIT.getFieldStatusSymbol());
         board1.addShipToBoard(podwodna);
         player1.addToPlayerShipList(podwodna);
 
         board1.changeFieldStatus(1,1, SquareStatus.HIT.getFieldStatusSymbol());
+        board1.changeFieldStatus(1,2, SquareStatus.HIT.getFieldStatusSymbol());
 
         System.out.println(player1.isAnyShipLeft());
 
