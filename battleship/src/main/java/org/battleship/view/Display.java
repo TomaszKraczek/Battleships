@@ -44,7 +44,9 @@ public class Display {
         System.out.println("\n1. GRACZ VS GRACZ\n2. GRACZ VS KOMPUTER");
     }
 
-    public void displayGameResult() {
+    public void displayGameResult(Player player) {
+        String str = String.format("Gratulacje! %s wygrał!", player.getPlayerName());
+        System.out.println(str);
     }
 
     public void messageToSetShips(Player player){

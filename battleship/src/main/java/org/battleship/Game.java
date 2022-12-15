@@ -55,13 +55,17 @@ public class Game {
                 player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
                 player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
                 player2.markAnyShipIfHited(coords[0], coords[1]);
+            } else {
+                player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.MISSED.getFieldStatusSymbol());
+                player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.MISSED.getFieldStatusSymbol());
             }
-            monitor.displayBoard(player2Ships);
-            System.out.println("tutaj widać trafienia 1 gracza test");;
-            System.out.println(player2.isAnyShipLeft());
         }
 
-        System.out.println("wygrał gracz pierwszy");
+        if(player1.isAnyShipLeft()){
+            monitor.displayGameResult(player1);
+        } else {
+            monitor.displayGameResult(player2);
+        }
 
     }
 
