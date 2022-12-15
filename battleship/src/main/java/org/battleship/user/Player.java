@@ -35,9 +35,14 @@ public class Player {
     public void addToPlayerShipList(Ship ship){
         playerShips.add(ship);
     }
-    public void showShipList(){
-        for (Ship playerShip : playerShips) {
-            System.out.println(playerShip.getType());
+
+    public String getPlayerName(){
+        return String.format("Player %s", playerId);
+    }
+
+    public void markAnyShipIfHited(int x, int y){
+        for (Ship ship : playerShips) {
+            ship.makeShipPartHited(x, y);
         }
     }
     public boolean isAnyShipLeft(){

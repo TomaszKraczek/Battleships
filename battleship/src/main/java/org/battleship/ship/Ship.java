@@ -14,6 +14,14 @@ public class Ship {
         this.size = type.getShipSize();
     }
 
+    public void makeShipPartHited(int x, int y){
+        for (Square square : coordsOfShip) {
+            if(square.isShipOnField(x, y)){
+                square.setSquareStatus(SquareStatus.HIT.getFieldStatusSymbol());
+            }
+        }
+    }
+
     public ShipType getType (){
         return type;
     }

@@ -3,6 +3,7 @@ package org.battleship.view;
 import org.battleship.board.Board;
 import org.battleship.ship.Ship;
 import org.battleship.ship.Square;
+import org.battleship.user.Player;
 
 public class Display {
 
@@ -37,9 +38,16 @@ public class Display {
         System.out.println(s);
     }
     public void displayMenu(){
-
     }
     public void displayGameResult(){
-
     }
+
+    public void messageToSetShips(Player player){
+        String s = String.format("\nHello %s! You can set up your ships: ", player.getPlayerName());
+        System.out.println(s);
+    }
+    public void messageToGetShootCoords(Player player){
+        System.out.println(String.format("%s Wybierz koordynaty do strzału: ", player.getPlayerName()));
+    }
+
 }
