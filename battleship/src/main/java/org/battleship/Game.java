@@ -70,7 +70,7 @@ public class Game {
     }
 
 
-    private void setShipOnBoard(Board board, Ship ship, int first, int second, String choice) {
+    private boolean setShipOnBoard(Board board, Ship ship, int first, int second, String choice) {
         switch (choice) {
             case "left":
                 if(second - ship.getType().getShipSize() < 0){
@@ -117,6 +117,7 @@ public class Game {
                 board.addShipToBoard(ship);
                 break;
         }
+        return true;
     }
     private boolean checkIfAllFieldAreFree(Board board, Ship ship, int first, int second, String choice){
 
