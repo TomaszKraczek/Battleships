@@ -34,7 +34,7 @@ public class Display {
         System.out.println(message);
     }
     public void displayMessageForShipPlacement(Ship ship){
-        String s = String.format("Chose first coordinate for: %s", ship.getType());
+        String s = String.format("Wybierz pierwsze pole dla statku: %s", ship.getType());
         System.out.println(s);
     }
     public void displayMenu(){
@@ -44,11 +44,13 @@ public class Display {
         System.out.println("\n1. GRACZ VS GRACZ\n2. GRACZ VS KOMPUTER");
     }
 
-    public void displayGameResult() {
+    public void displayGameResult(Player player) {
+        String str = String.format("Gratulacje! %s wygrał!", player.getPlayerName());
+        System.out.println(str);
     }
 
     public void messageToSetShips(Player player){
-        String s = String.format("\nHello %s! You can set up your ships: ", player.getPlayerName());
+        String s = String.format("\nWitaj %s! Możesz rozmieściść swoje statki! ", player.getPlayerName());
         System.out.println(s);
     }
     public void messageToGetShootCoords(Player player){

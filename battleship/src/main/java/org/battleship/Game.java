@@ -53,36 +53,46 @@ public class Game {
 
 
         while (player1.isAnyShipLeft() && player2.isAnyShipLeft()){
-            showPlayerRoundInfo(player1Ships, player1Shots);
-            monitor.messageToGetShootCoords(player1);
-            int[] coords = reader.getConvertedCoordinates();
-            if(player2Ships.getFieldInfo(coords[0], coords[1]) == SquareStatus.SHIP.getFieldStatusSymbol()){
-                player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
-                player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
-                player2.markAnyShipIfHited(coords[0], coords[1]);
-                makeAllPossibleShipSunk(player2, player2Ships);
-            }
-            monitor.displayBoard(player2Ships);
-            System.out.println("tutaj widać trafienia 1 gracza test");;
-//            System.out.println(player2.isAnyShipLeft());
+            playerTurn(player1, player2, player1Ships, player2Ships, player1Shots);
+            if (!player2.isAnyShipLeft()){break;}
+            playerTurn(player2, player1, player2Ships, player1Ships, player2Shots);
+            if (!player1.isAnyShipLeft()){break;}
         }
 
-        System.out.println("wygrał gracz pierwszy");
+        if(player1.isAnyShipLeft()){
+            monitor.displayGameResult(player1);
+        } else {
+            monitor.displayGameResult(player2);
+        }
 
+    }
+
+    private void playerTurn(Player player1, Player player2, Board player1Ships, Board player2Ships, Board player1Shots) {
+        showPlayerRoundInfo(player1, player1Ships, player1Shots);
+        monitor.messageToGetShootCoords(player1);
+        int[] coords = reader.getConvertedCoordinates();
+        if(player2Ships.getFieldInfo(coords[0], coords[1]) == SquareStatus.SHIP.getFieldStatusSymbol()){
+            player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
+            player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
+            player2.markAnyShipIfHited(coords[0], coords[1]);
+        } else {
+            player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.MISSED.getFieldStatusSymbol());
+            player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.MISSED.getFieldStatusSymbol());
+        }
+    }
+
+    private void showPlayerRoundInfo(Player player ,Board player1Ships, Board player1Shots) {
+        monitor.displayMessage(player.getPlayerName().toUpperCase());
+        monitor.displayMessage("Twoje strzały: ");
+        monitor.displayBoard(player1Shots);
+        monitor.displayMessage("Twoje statki: ");
+        monitor.displayBoard(player1Ships);
     }
 
     private void makeAllPossibleShipSunk(Player player2, Board player2Ships) {
         for (Ship ship : player2.getPlayerShips()) {
             player2Ships.changeSquareToSunk(ship.getSquaresToSunkShip());
         }
-    }
-
-    private void showPlayerRoundInfo(Board player1Ships, Board player1Shots) {
-        monitor.displayMessage("PLAYER 1: ");
-        monitor.displayMessage("Twoje strzały: ");
-        monitor.displayBoard(player1Shots);
-        monitor.displayMessage("Twoje statki: ");
-        monitor.displayBoard(player1Ships);
     }
 
     private void placeShipsOnBoard(Board board, Ship ship) {
@@ -92,9 +102,9 @@ public class Game {
         String choice;
         do
         {
-            System.out.println("You are placing " + ship.getType().name());
-            System.out.println("It has " + ship.getType().getShipSize() + " fields");
-            monitor.displayMessage("Pick Coordinates(a-j)(1-10): ");
+            System.out.println("Chcesz rozmieścić " + ship.getType().name());
+            System.out.println("Statek ma " + ship.getType().getShipSize() + " jednostki długości");
+            monitor.displayMessage("Wybierz współrzędne (A-J)(1-10): ");
             monitor.displayMessage(" ");
             coords = reader.getConvertedCoordinates();
             System.out.println("Write direction to set ship: ");
@@ -120,7 +130,7 @@ public class Game {
 
     private void setOneShipOnBoard(Board board, Ship ship, int first, int second, String choice) {
         switch (choice) {
-            case "left":
+            case "left", "lewo":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second - i, SquareStatus.SHIP);
                     ship.addPartOfShip(partCoord);
@@ -153,7 +163,7 @@ public class Game {
     private boolean checkIfAllFieldAreFree(Board board, Ship ship, int first, int second, String choice){
 
         switch (choice) {
-            case "left":
+            case "left", "lewo":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second - i, SquareStatus.SHIP);
                     if (!board.areFieldsAroundEmpty(partCoord)){
