@@ -49,7 +49,9 @@ public class Game {
 
         while (player1.isAnyShipLeft() && player2.isAnyShipLeft()){
             playerTurn(player1, player2, player1Ships, player2Ships, player1Shots);
+            if (!player2.isAnyShipLeft()){break;}
             playerTurn(player2, player1, player2Ships, player1Ships, player2Shots);
+            if (!player1.isAnyShipLeft()){break;}
         }
 
         if(player1.isAnyShipLeft()){
@@ -61,7 +63,7 @@ public class Game {
     }
 
     private void playerTurn(Player player1, Player player2, Board player1Ships, Board player2Ships, Board player1Shots) {
-        showPlayerRoundInfo(player1Ships, player1Shots);
+        showPlayerRoundInfo(player1, player1Ships, player1Shots);
         monitor.messageToGetShootCoords(player1);
         int[] coords = reader.getConvertedCoordinates();
         if(player2Ships.getFieldInfo(coords[0], coords[1]) == SquareStatus.SHIP.getFieldStatusSymbol()){
@@ -74,8 +76,8 @@ public class Game {
         }
     }
 
-    private void showPlayerRoundInfo(Board player1Ships, Board player1Shots) {
-        monitor.displayMessage("PLAYER 1: ");
+    private void showPlayerRoundInfo(Player player ,Board player1Ships, Board player1Shots) {
+        monitor.displayMessage(player.getPlayerName().toUpperCase());
         monitor.displayMessage("Twoje strzały: ");
         monitor.displayBoard(player1Shots);
         monitor.displayMessage("Twoje statki: ");
