@@ -95,4 +95,10 @@ public class Board {
         ocean[x][y].setSquareStatus(status);
     }
 
+    public void changeSquareToSunk(List <Square> list){
+        for (Square square : list) {
+            ocean[square.getXPosition()][square.getYPosition()].setSquareStatus(SquareStatus.SUNK.getFieldStatusSymbol());
+        }
+    }
+
 }

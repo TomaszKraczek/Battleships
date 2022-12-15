@@ -2,11 +2,14 @@ package org.battleship;
 
 import org.battleship.board.Board;
 import org.battleship.ship.Ship;
+import org.battleship.ship.ShipType;
 import org.battleship.ship.Square;
 import org.battleship.ship.SquareStatus;
 import org.battleship.user.Input;
 import org.battleship.user.Player;
 import org.battleship.view.Display;
+
+import java.util.List;
 
 
 public class Game {
@@ -25,6 +28,8 @@ public class Game {
 
         player1.generatePlayerShipList();
         player2.generatePlayerShipList();
+
+
 
 
 //        System.out.println("\nWelcome in BattleShip Game!!!\n");
@@ -55,14 +60,21 @@ public class Game {
                 player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
                 player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
                 player2.markAnyShipIfHited(coords[0], coords[1]);
+                makeAllPossibleShipSunk(player2, player2Ships);
             }
             monitor.displayBoard(player2Ships);
             System.out.println("tutaj widać trafienia 1 gracza test");;
-            System.out.println(player2.isAnyShipLeft());
+//            System.out.println(player2.isAnyShipLeft());
         }
 
         System.out.println("wygrał gracz pierwszy");
 
+    }
+
+    private void makeAllPossibleShipSunk(Player player2, Board player2Ships) {
+        for (Ship ship : player2.getPlayerShips()) {
+            player2Ships.changeSquareToSunk(ship.getSquaresToSunkShip());
+        }
     }
 
     private void showPlayerRoundInfo(Board player1Ships, Board player1Shots) {
