@@ -3,7 +3,7 @@ package org.battleship.ship;
 import java.util.List;
 
 public enum ShipType {
-    CARRIER(5, 1), CRUISER(3, 2), BATTLESHIP(4, 1), DESTROYER(2, 3), SUBMARINE(3, 3);
+    CARRIER(5, 0), CRUISER(3, 1), BATTLESHIP(4, 0), DESTROYER(2, 0), SUBMARINE(3, 0);
 
     private final int shipSize;
     private final int shipQuantity;
