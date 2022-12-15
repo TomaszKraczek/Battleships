@@ -18,6 +18,13 @@ public class Square {
         this.squareStatus = status;
     }
 
+    public boolean isShipOnField(int x, int y){
+        if(x == this.x && y == this.y){
+            return true;
+        }
+        return false;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
