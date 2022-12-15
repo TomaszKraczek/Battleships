@@ -30,17 +30,6 @@ public class Game {
         player2.generatePlayerShipList();
 
 
-
-
-//        System.out.println("\nWelcome in BattleShip Game!!!\n");
-//        System.out.println("     You have: \n" +
-//                " 1 * Carrier - 5 fields\n" +
-//                " 1 * battleship - 4 fields\n" +
-//                " 2 * cruiser - 3 fields\n" +
-//                " 3 * submarine - 3 fields\n" +
-//                " 3 * destroyer - 2 fields\n" +
-//                "Set them up on the map by choosing coordinates!:");
-
         monitor.messageToSetShips(player1);
         for (Ship ship : player1.getPlayerShips()) {
             placeShipsOnBoard(player1Ships, ship);
