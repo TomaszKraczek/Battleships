@@ -39,9 +39,8 @@ public class Game {
             int[] coords;
             String choice;
             int counterOfAttempts = 0;
-            do
-            {
-                if (counterOfAttempts > 0){
+            do {
+                if (counterOfAttempts > 0) {
                     System.out.println("Nie możesz tak rozstawić statku!");
                 }
                 System.out.println("You are placing " + ship.getType().name());
@@ -51,9 +50,9 @@ public class Game {
                 coords = reader.getConvertedCoordinates();
                 System.out.println("Write direction to set ship: ");
                 choice = reader.getStringFromUser();
-                try{
-                isPossible = checkIfAllFieldAreFree(board1, ship, coords[0], coords[1], choice);
-                } catch (ArrayIndexOutOfBoundsException e){
+                try {
+                    isPossible = checkIfAllFieldAreFree(board1, ship, coords[0], coords[1], choice);
+                } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Nie można tak, wyjechałeś za linię");
                 }
                 counterOfAttempts++;
@@ -103,15 +102,17 @@ public class Game {
                 break;
         }
     }
-    private boolean checkIfAllFieldAreFree(Board board, Ship ship, int first, int second, String choice){
+
+    private boolean checkIfAllFieldAreFree(Board board, Ship ship, int first, int second, String choice) {
 
         switch (choice) {
             case "left":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first, second - i, SquareStatus.SHIP);
-                    if (!board.areFieldsAroundEmpty(partCoord)){
-                        return false;}
-                        }
+                    if (!board.areFieldsAroundEmpty(partCoord)) {
+                        return false;
+                    }
+                }
                 break;
             case "right":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
@@ -119,14 +120,15 @@ public class Game {
                     if (!board.areFieldsAroundEmpty(partCoord)) {
                         return false;
                     }
-                        }
+                }
                 break;
             case "up":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
                     Square partCoord = new Square(first - i, second, SquareStatus.SHIP);
                     if (!board.areFieldsAroundEmpty(partCoord)) {
-                        return false;}
-                        }
+                        return false;
+                    }
+                }
                 break;
             case "down":
                 for (int i = 0; i < ship.getType().getShipSize(); i++) {
@@ -134,10 +136,10 @@ public class Game {
                     if (!board.areFieldsAroundEmpty(partCoord)) {
                         return false;
                     }
-                        }
+                }
                 break;
         }
-       return true;
+        return true;
     }
 
 }
