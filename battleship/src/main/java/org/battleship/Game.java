@@ -75,6 +75,7 @@ public class Game {
             player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
             player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.HIT.getFieldStatusSymbol());
             player2.markAnyShipIfHited(coords[0], coords[1]);
+            makeAllPossibleShipSunk(player2, player2Ships, player1Shots);
         } else {
             player1Shots.changeFieldStatus(coords[0], coords[1], SquareStatus.MISSED.getFieldStatusSymbol());
             player2Ships.changeFieldStatus(coords[0], coords[1], SquareStatus.MISSED.getFieldStatusSymbol());
@@ -89,9 +90,10 @@ public class Game {
         monitor.displayBoard(player1Ships);
     }
 
-    private void makeAllPossibleShipSunk(Player player2, Board player2Ships) {
+    private static void makeAllPossibleShipSunk(Player player2, Board player2Ships, Board player1Shots) {
         for (Ship ship : player2.getPlayerShips()) {
             player2Ships.changeSquareToSunk(ship.getSquaresToSunkShip());
+            player1Shots.changeSquareToSunk(ship.getSquaresToSunkShip());
         }
     }
 
